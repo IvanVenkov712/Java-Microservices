@@ -20,13 +20,21 @@ public class LogFileHandler implements Runnable {
     }
 
     private void processData(LogData newData) {
+        map.compute(
+            newData.endpoint(),
+            (endpoint, statistics) ->
+                statistics == null ? EndpointStatistics.initialStatistics(newData) :
+                    statistics.getNewStatistics(newData)
+        );
+        /*
         map.computeIfPresent(
             newData.endpoint(),
             (String key, EndpointStatistics statistics) -> statistics.getNewStatistics(newData)
         );
         map.computeIfAbsent(newData.endpoint(),
-            (String key) ->  EndpointStatistics.initialStatistics(newData)
+            (String key) -> EndpointStatistics.initialStatistics(newData)
         );
+         */
     }
 
     @Override

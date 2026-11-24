@@ -42,4 +42,15 @@ public record EndpointStatistics (
     public static EndpointStatistics initialStatistics(LogData data) {
         return emptyStatistics(data.endpoint()).getNewStatistics(data);
     }
+
+    @Override
+    public String toString() {
+        return
+            endpoint() + "\n" +
+            "\tRequests: " + totalQueriesCount() + "\n" +
+            "\tFailures: " + failedQueriesCount() + "\n" +
+            "\tAvg Latency: " + averageExecutionTime() + "\n" +
+            "\tMin Latency: " + minExecutionTime() + "\n" +
+            "\tMax Latency: " + maxExecutionTime() + "\n";
+    }
 }

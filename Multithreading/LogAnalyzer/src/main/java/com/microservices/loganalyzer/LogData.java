@@ -41,7 +41,7 @@ public record LogData(
         if (tokens.length != 5) {
             throw new IllegalArgumentException("Invalid line format");
         }
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss");
         LocalDateTime time = LocalDateTime.parse(tokens[0], formatter);
         String method = tokens[1];
         String endpoint = tokens[2];
